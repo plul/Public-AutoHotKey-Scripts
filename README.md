@@ -1,6 +1,8 @@
 ### What it is
 This is a small GUI that allows you to assign hotkeys to any normal AHK command you can think of. I was creating more and more hotkeys for various things. Soon I ran out of keys on my keyboard to assign hotkeys to, so I wrote this script. It is designed to be as minimal as possible.
 
+![Screenshot](/img/ahk_launcher.png "Screenshot of the GUI")
+
 ### How to use it
 Run the Host.ahk file.
 
