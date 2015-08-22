@@ -31,11 +31,22 @@ Else If Pedersen = l%A_Space% ; Search Google with ImFeelingLucky
     gui_search_url := "http://www.google.com/search?q=REPLACEME&btnI=Im+Feeling+Lucky"
     gui_search()
 }
+Else If Pedersen = x%A_Space% ; Search Google as Incognito
+; A note on how this works:
+;   The variable name "gui_search_url" is poorly chosen.
+;   What you actually specify in the variable "gui_search_url" is a command to run. It does not have to be a URL
+;   Before the command is run, the word REPLACEME is replaced by your input.
+;   It does not have to be a search url, that was just the application I had in mind when I originally wrote it.
+;   So what this does is that it runs chrome with the arguments "-incognito" and the google search URL where REPLACEME in the URL has been replaced by your input.
+{
+    gui_search_title = Google Search as Incognito
+    gui_search_url := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe -incognito https://www.google.com/search?safe=off&q=REPLACEME"
+    gui_search()
+}
 
 
 
 ;;; SEARCH OTHER THINGS ;;;
-
 
 Else If Pedersen = f%A_Space% ; Search Facebook
 {
