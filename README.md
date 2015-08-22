@@ -1,5 +1,5 @@
 ### What it is
-This is a small GUI that allows you to assign hotkeys to any normal AHK command you can think of. I was creating more and more hotkeys for various things. Soon I ran out of keys on my keyboard to assign hotkeys to, so I wrote this script. It is designed to be as minimal as possible.
+This is a small GUI that allows you to run any normal AutoHotkey command or block of code by typing a name for the command you want to run. I wrote this script because I was creating more and more hotkeys for various things, but I ran out of keys on my keyboard to assign hotkeys to. It is designed to be as minimal as possible.
 
 ![Screenshot](/img/ahk_launcher.png "Screenshot of the GUI")
 
@@ -7,7 +7,7 @@ This is a small GUI that allows you to assign hotkeys to any normal AHK command 
 Run the `Host.ahk` file.
 
 This entire script is build around the `CapsLock` key.
-A small GUI is activated by `CapsLock`+`Space`.
+The GUI is activated by `CapsLock`+`Space`.
 Normal `CapsLock` functionality is preserved, and can be toggled by `Alt`+`CapsLock`.
 
 When typing something in the GUI, whatever you type is matched up against the commands in `UserCommands.ahk`. These are normal AutoHotkey commands so you can and should write your own. I have supplied some sample commands to show some ideas. But it only becomes truly powerful once you customize it with commands to suit your specific needs.
