@@ -144,7 +144,6 @@ gui_commandlibrary() {
             If A_LoopReadLine contains If
             {
                 Tooltip A_LoopReadLine, 3,3,1
-                ;tooltiptext .= "blaaaa"
                 IfInString, A_LoopReadLine, Pedersen
                 {
                     IfInString, A_LoopReadLine, =
