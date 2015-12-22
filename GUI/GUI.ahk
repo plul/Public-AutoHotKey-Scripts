@@ -184,7 +184,7 @@ gui_commandlibrary() {
     ; The following allows the tooltip to display in a monospace font (uses GUI3 defined above)
     SendMessage, 0x31,,,, ahk_id %hwndStatic%
     font := ErrorLevel
-    ToolTip %tooltiptextpadded%, 3, 3, 1 ; Display tooltip: Content, X, Y, Id. Variable must be enclosed in %
+    ToolTip %tooltiptextpadded%, 3, 3, 1
 ;    SendMessage, 0x30, font, 1,, ahk_class tooltips_class32 ahk_exe autohotkey.exe
 
     Return
