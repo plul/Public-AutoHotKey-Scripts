@@ -1,4 +1,4 @@
-﻿; Created by Asger Juul Brunshøj
+; Created by Asger Juul Brunshøj
 
 ;-------------------------------------------------------
 ; AUTO EXECUTE
@@ -139,23 +139,28 @@ gui_commandlibrary() {
     Loop, read, %A_ScriptDir%/GUI/UserCommands.ahk
     {
         ; search for the string If Pedersen =, but search for each word individually because spacing between words might not be consistent. (might be improved with regex)
-        IfInString, A_LoopReadLine, If
+        If Substr(A_LoopReadLine, 1, 1) != ";" ; Do not display commented commands
         {
-            IfInString, A_LoopReadLine, Pedersen
+            If A_LoopReadLine contains If
             {
-                IfInString, A_LoopReadLine, =
+                Tooltip A_LoopReadLine, 3,3,1
+                ;tooltiptext .= "blaaaa"
+                IfInString, A_LoopReadLine, Pedersen
                 {
-                    StringGetPos, setpos, A_LoopReadLine,=
-                    StringTrimLeft, trimmed, A_LoopReadLine, setpos+1 ; trim everything that comes before the = sign
-                    StringReplace, trimmed, trimmed, `%A_Space`%,{space}, All
-                    tooltiptext .= trimmed
-                    tooltiptext .= "`n"
-
-                    ; The following is used to correct padding:
-                    StringGetPos, commentpos, trimmed,`;
-                    If (maxpadding < commentpos)
+                    IfInString, A_LoopReadLine, =
                     {
-                        maxpadding := commentpos
+                        StringGetPos, setpos, A_LoopReadLine,=
+                        StringTrimLeft, trimmed, A_LoopReadLine, setpos+1 ; trim everything that comes before the = sign
+                        StringReplace, trimmed, trimmed, `%A_Space`%,{space}, All
+                        tooltiptext .= trimmed
+                        tooltiptext .= "`n"
+
+                        ; The following is used to correct padding:
+                        StringGetPos, commentpos, trimmed,`;
+                        If (maxpadding < commentpos)
+                        {
+                            maxpadding := commentpos
+                        }
                     }
                 }
             }
@@ -179,8 +184,8 @@ gui_commandlibrary() {
     ; The following allows the tooltip to display in a monospace font (uses GUI3 defined above)
     SendMessage, 0x31,,,, ahk_id %hwndStatic%
     font := ErrorLevel
-    ToolTip %tooltiptextpadded%, 3, 3, 1
-    ; SendMessage, 0x30, font, 1,, ahk_class tooltips_class32 ahk_exe autohotkey.exe ; Prevents ToolTip from working in Win10.
+    ToolTip %tooltiptextpadded%, 3, 3, 1 ; Display tooltip: Content, X, Y, Id. Variable must be enclosed in %
+;    SendMessage, 0x30, font, 1,, ahk_class tooltips_class32 ahk_exe autohotkey.exe
 
     Return
 }
