@@ -180,7 +180,7 @@ gui_commandlibrary() {
     SendMessage, 0x31,,,, ahk_id %hwndStatic%
     font := ErrorLevel
     ToolTip %tooltiptextpadded%, 3, 3, 1
-    SendMessage, 0x30, font, 1,, ahk_class tooltips_class32 ahk_exe autohotkey.exe
+    ; SendMessage, 0x30, font, 1,, ahk_class tooltips_class32 ahk_exe autohotkey.exe ; Prevents ToolTip from working in Win10.
 
     Return
 }
