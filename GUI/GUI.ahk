@@ -125,6 +125,7 @@ gui_search(url) {
 
 gui_SearchEnter:
     Gui, Submit
+    gui_destroy()
     query_safe := uriEncode(gui_SearchEdit)
     Loop, %search_urls%
     {
@@ -132,5 +133,4 @@ gui_SearchEnter:
         run %search_final_url%
     }
     search_urls := 0
-    gui_destroy()
     return
