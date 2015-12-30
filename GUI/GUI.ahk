@@ -1,5 +1,10 @@
 ﻿; Created by Asger Juul Brunshøj
 
+; Note: Save with encoding UTF-8 with BOM if possible.
+; I had issues with special characters like in ¯\_(ツ)_/¯ that wouldn't work otherwise.
+; Notepad will save UTF-8 files with BOM automatically (even though it does not say so).
+; Some editors however save without BOM, and then special characters look messed up in the AHK GUI.
+
 ;-------------------------------------------------------------------------------
 ; AUTO EXECUTE
 ;-------------------------------------------------------------------------------
@@ -73,7 +78,12 @@ gui_destroy() {
     ; in case the next search does not set its own:
     gui_search_title =
 
+    ; Clear the tooltip
+    Gosub, gui_tooltip_clear
+
+    ; Hide GUI
     Gui, Destroy
+
     ; Bring focus back to another window found on the desktop
     WinActivate
 }
@@ -133,4 +143,63 @@ gui_SearchEnter:
         run %search_final_url%
     }
     search_urls := 0
+    return
+
+
+;-------------------------------------------------------------------------------
+; TOOLTIP
+; Improved and fixed for Windows 10 with the help of schmimae.
+;-------------------------------------------------------------------------------
+gui_tooltip_clear:
+    ToolTip
+    return
+
+gui_commandlibrary:
+    ; hidden GUI used to pass font options to tooltip:
+    CoordMode, Tooltip, Screen ; To make sure the tooltip coordinates is displayed according to the screen and not active window
+    Gui, 2:Font,s10, Lucida Console
+    Gui, 2:Add, Text, HwndhwndStatic
+
+    tooltiptext =
+    maxpadding = 0
+    StringCaseSense, Off ; Matching to both if/If in the IfInString command below
+    Loop, read, %A_ScriptDir%/GUI/UserCommands.ahk
+    {
+        ; search for the string If Pedersen =, but search for each word individually because spacing between words might not be consistent. (might be improved with regex)
+        If Substr(A_LoopReadLine, 1, 1) != ";" ; Do not display commented commands
+        {
+            If A_LoopReadLine contains if
+            {
+                IfInString, A_LoopReadLine, Pedersen
+                    IfInString, A_LoopReadLine, =
+                    {
+                        StringGetPos, setpos, A_LoopReadLine,=
+                        StringTrimLeft, trimmed, A_LoopReadLine, setpos+1 ; trim everything that comes before the = sign
+                        StringReplace, trimmed, trimmed, `%A_Space`%,{space}, All
+                        tooltiptext .= trimmed
+                        tooltiptext .= "`n"
+
+                        ; The following is used to correct padding:
+                        StringGetPos, commentpos, trimmed,`;
+                        if (maxpadding < commentpos)
+                            maxpadding := commentpos
+                    }
+            }
+        }
+    }
+    tooltiptextpadded =
+    Loop, Parse, tooltiptext,`n
+    {
+        line = %A_LoopField%
+        StringGetPos, commentpos, line, `;
+        spaces_to_insert := maxpadding - commentpos
+        Loop, %spaces_to_insert%
+        {
+            StringReplace, line, line,`;,%A_Space%`;
+        }
+        tooltiptextpadded .= line
+        tooltiptextpadded .= "`n"
+    }
+    Sort, tooltiptextpadded
+    ToolTip %tooltiptextpadded%, 3, 3, 1
     return

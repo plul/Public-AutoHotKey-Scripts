@@ -1,5 +1,9 @@
 ﻿; Created by Asger Juul Brunshøj
-; Note: Save with encoding UTF-8 with BOM if possible. I had issues with special characters like in ¯\_(ツ)_/¯ that wouldn't work otherwise.
+
+; Note: Save with encoding UTF-8 with BOM if possible.
+; I had issues with special characters like in ¯\_(ツ)_/¯ that wouldn't work otherwise.
+; Notepad will save UTF-8 files with BOM automatically (even though it does not say so).
+; Some editors however save without BOM, and then special characters look messed up in the AHK GUI.
 
 ; Write your own AHK commands in this file to be recognized by the GUI. Take inspiration from the samples provided here.
 
@@ -232,4 +236,9 @@ else if Pedersen = week ; Which week is it?
     MsgBox It is currently week %weeknumbertrimmed%
     weeknumber =
     weeknumbertrimmed =
+}
+else if Pedersen = ? ; Tooltip with list of commands
+{
+    GuiControl,, Pedersen, ; Clear the input box
+    Gosub, gui_commandlibrary
 }
