@@ -25,7 +25,7 @@ When typing something in the GUI, whatever you type is matched up against the co
 * Try `week` or `date`. (I can never remember the week number so this is useful when on the phone with somebody who insists on comparing calendars going by week number).
 * Type `ping` into the GUI to quickly ping www.google.com to see if your internet connection works.
 
-Now you may go explore the rest of the sample commands in `UserCommands.ahk`, and start filling in your own.
+There are some additional example commands included. Try typing simply `?`, and you should see a tooltip with all defined commands and a description of what they do. You may also explore all the sample commands in detail by looking in `UserCommands.ahk`. Now it is time for you to start filling in your own personalized commands.
 
 My own personal `UserCommands.ahk` file is huge, but it is tailored to the things I do everyday and would not be much use for anybody else.
 
@@ -109,3 +109,5 @@ Note that the syntax has changed with this update, where it used to be
 The url are now passed as a parameter instead:
 
     gui_search("https://www.youtube.com/results?search_query=REPLACEME")
+
+Additionally, the tooltip was revived for Windows 10 and improved with the help of Github user schmimae.

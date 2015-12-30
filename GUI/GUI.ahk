@@ -145,10 +145,11 @@ gui_SearchEnter:
     search_urls := 0
     return
 
-
 ;-------------------------------------------------------------------------------
 ; TOOLTIP
-; Improved and fixed for Windows 10 with the help of schmimae.
+; The tooltip shows all defined commands, along with a description of what
+; each command does. It gets the description from the comments in UserCommands.ahk.
+; The code was improved and fixed for Windows 10 with the help of schmimae.
 ;-------------------------------------------------------------------------------
 gui_tooltip_clear:
     ToolTip
