@@ -44,7 +44,7 @@ After that, you can run any normal AHK block of code. If for example you have so
 
 That's it! now you can launch your favourite program by typing `prog` into the input field.
 
-There is a function, `gui_search()`, defined in this script that you can call if you want to search some specific website. So for example if you translate from English to Korean using Google Translate all the time, and you want a shortcut for that, then the way to go about it is the following:
+There is a function, `gui_search(url)`, defined in this script that you can call if you want to search some specific website. So for example if you translate from English to Korean using Google Translate all the time, and you want a shortcut for that, then the way to go about it is the following:
 
 1. Go to Google Translate.
 * Translate something. For example try translating `Winged turtle`.
@@ -55,24 +55,21 @@ There is a function, `gui_search()`, defined in this script that you can call if
         Else If Pedersen = kor ; Translate English to Korean
         {
             gui_search_title = English to Korean
-            gui_search_url := "https://translate.google.com/#en/ko/REPLACEME"
-            gui_search()
+            gui_search("https://translate.google.com/#en/ko/REPLACEME")
         }
 
-Now we can translate from English to Korean in a heart beat.
+Now we can translate from English to Korean in a heartbeat.
 
 ### How it works
-Disclaimer: This was never really written to be shared or used by others
-so it is not properly documented and some of the variable names are not self-explicable and some are in danish. I'm sorry about that. However if you don't go digging too deep, you shouldn't get in trouble. The `UserCommands.ahk` file should be easy to edit.
-There has been interest from a number of people in this script, so maybe I will clean it up completely one day.
+Disclaimer: Initially, this was not really written to be shared or used by others, so it is not properly documented and some of the variable names are not self-explanatory and some are in danish. I'm sorry about that. However if you don't go digging too deep, you should not get in trouble. The `UserCommands.ahk` file should be easy to edit.
 
 Here are some quick tips about the script and how it works:
 
 ##### Function `gui_destroy()`
 Hides and resets the GUI window.
 
-##### Function `gui_search()`
-gui_search() was made to search websites like Google and Reddit and so on. It will make a new text input field in the GUI where you can type your search query.
+##### Function `gui_search(url)`
+`gui_search(url)` was made to search websites like Google and Reddit and so on. It will make a new text input field in the GUI where you can type your search query.
 Then it will look at the supplied URL and find 'REPLACEME' and replace it
 with your search query.
 Example:
@@ -84,16 +81,31 @@ Example:
         gui_search()
     }
 
-### What happened to the tooltip?
-There used to be a tooltip to display all defined commands in `UserCommands.ahk`. It worked on Windows 7 but it disappears immediately on Windows 10. It was nice, but I didn't attempt to fix it yet. I didn't use it much anyway. I removed the hotkey but left the code in GUI.ahk, in case it is an easy fix.
+### What is in store for the future
+There has been interest from a number of people in this script, and every once in a while I get a shoutout or a message on reddit from someone who found it and fell in love with it. That warms my heart, so I plan to clean it up completely one day. I also have some other AHK tricks that my life completely depends on, and I am looking forward to sharing those as well. I will wrap it all up in one script one day, and invite you into my world of CapsLock based bliss.
 
-If you really want to give it a try, just add the following to your `UserCommands.ahk` file:
-
-    Else If Pedersen = ? ; Tooltip with list of commands
-    {
-        GuiControl,, Pedersen, ; Clear the input box
-        gui_commandlibrary()
-    }
+I have this GUI that I have now shared with you. The major things I have built in addition to the GUI are a window manager, a minimalistic password manager (which is actually integrated into the `¯\_(ツ)_/¯` GUI), and some indispensable mappings to the `uiojkl` keys so that you will never have to touch the arrow keys again. I use all of it all the time, and I hope I will be able to share it with you soon. 
 
 ### Known bugs
-The english to korean Google Translate example does not currently work on the combination of Windows10 + Google Chrome. This is because everything after the `#` symbol in the URL is stripped. This is a bug. It has nothing to do with AutoHotkey. The issue was reported here: https://code.google.com/p/chromium/issues/detail?id=514162#c5
+The english to korean Google Translate example does not currently work on the combination of Windows10 + Google Chrome. This is because everything after the `#` symbol in the URL is stripped. This is a bug in Chrome. It has nothing to do with AutoHotkey. The issue was reported here: https://code.google.com/p/chromium/issues/detail?id=514162#c5
+
+### Most recent changes
+##### December 30. 2015:
+Most significant change is to `url_search(url)` as a consequence of a re-introduced feature: Ability to search multiple URLs. Searching multiple URLs is now possible as so:
+
+    else if Pedersen = m%A_Space% ; Open more than one URL
+    {
+        gui_search_title = multiple
+        gui_search("https://www.google.com/search?&q=REPLACEME")
+        gui_search("https://www.bing.com/search?q=REPLACEME")
+        gui_search("https://duckduckgo.com/?q=REPLACEME")
+    }
+
+Note that the syntax has changed with this update, where it used to be
+
+    gui_search_url := "https://www.youtube.com/results?search_query=REPLACEME"
+    gui_search()
+
+The url are now passed as a parameter instead:
+
+    gui_search("https://www.youtube.com/results?search_query=REPLACEME")
