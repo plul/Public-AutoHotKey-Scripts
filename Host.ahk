@@ -8,15 +8,18 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 SetCapsLockState, AlwaysOff
 
-#InstallKeybdHook
+; #InstallKeybdHook
 
-main()
-Return
+;-------------------------------------------------------
+; AUTO EXECUTE SECTION FOR INCLUDED SCRIPTS
+; Scripts being included need to have their auto execute
+; section in a function or subroutine which is then
+; executed below.
+;-------------------------------------------------------
+Gosub, gui_autoexecute
 ;-------------------------------------------------------
 ; END AUTO EXECUTE SECTION
-;-------------------------------------------------------
-; Scripts being included need to have their auto execute
-; section in a function which is then called from main()
+return
 ;-------------------------------------------------------
 
 ; Load the GUI code
@@ -24,7 +27,3 @@ Return
 
 ; General settings
 #Include %A_ScriptDir%\Miscellaneous\miscellaneous.ahk
-
-main() {
-	gui_autoexecute()
-}
