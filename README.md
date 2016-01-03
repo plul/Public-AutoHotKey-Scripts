@@ -36,7 +36,7 @@ The first thing to do is often to hide the GUI and reset the input field. Do thi
 
 After that, you can run any normal AHK block of code. If for example you have some program you use all the time, you can create a shortcut to that program by
 
-    Else If Pedersen = prog
+    else if Pedersen = prog
     {
         gui_destroy()
         run "C:\Program Files\Company\That awesome program.exe"
@@ -52,7 +52,7 @@ There is a function, `gui_search(url)`, defined in this script that you can call
 * Replace your query with the word `REPLACEME`. Like this: `https://translate.google.com/#en/ko/REPLACEME`.
 * Then the code could be:
 
-        Else If Pedersen = kor ; Translate English to Korean
+        else if Pedersen = kor ; Translate English to Korean
         {
             gui_search_title = English to Korean
             gui_search("https://translate.google.com/#en/ko/REPLACEME")
@@ -74,11 +74,10 @@ Then it will look at the supplied URL and find 'REPLACEME' and replace it
 with your search query.
 Example:
 
-    Else If Pedersen = y%A_Space% ; Search Youtube
+    else if Pedersen = y%A_Space% ; Search Youtube
     {
         gui_search_title = Youtube
-        gui_search_url := "https://www.youtube.com/results?search_query=REPLACEME"
-        gui_search()
+        gui_search("https://www.youtube.com/results?search_query=REPLACEME")
     }
 
 ### What is in store for the future
@@ -106,7 +105,7 @@ Note that the syntax has changed with this update, where it used to be
     gui_search_url := "https://www.youtube.com/results?search_query=REPLACEME"
     gui_search()
 
-The url are now passed as a parameter instead:
+The url is now passed as a parameter instead:
 
     gui_search("https://www.youtube.com/results?search_query=REPLACEME")
 
