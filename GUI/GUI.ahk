@@ -26,6 +26,9 @@ gui_autoexecute:
     gui_control_options := "xm w220 " . cForeground . " -E0x200"
     ; -E0x200 removes border around Edit controls
 
+    ; Initialize variable to keep track of the state of the GUI
+    gui_state = closed
+
     ; Initialize search_urls as a variable set to zero
     search_urls := 0
     return
@@ -35,10 +38,13 @@ gui_autoexecute:
 ;-------------------------------------------------------------------------------
 CapsLock & Space::
 gui_spawn:
-    IfWinExist, myGUI
+    if gui_state != closed
+    {
+        ; If the GUI is already open, close it.
+        gui_destroy()
         return
-    global gui_control_options
-    global gui_state
+    }
+
     gui_state = main
 
     Gui, Margin, 16, 16
