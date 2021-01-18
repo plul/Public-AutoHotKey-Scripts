@@ -63,6 +63,7 @@ gui_spawn:
 ; Automatically triggered on Escape key:
 GuiEscape:
     gui_destroy()
+    search_urls := 0
     return
 
 ; The callback function when the text changes in the input field.
@@ -122,6 +123,41 @@ gui_search_add_elements:
     Gui, Show, AutoSize
     return
 
+gui_project_search_add_elements:
+    Gui, Add, Text, %gui_control_options% %cYellow%, %gui_search_title%
+    Gui, Add, Edit, %gui_control_options% %cYellow% vList -WantReturn
+    Gui, Add, Button, x-10 y-10 w1 h1 +default ggui_find_and_open_folder ; hidden button
+    GuiControl, Disable, Pedersen
+    Gui, Show, AutoSize
+    return
+    
+gui_find_and_open_folder:
+    OnSelect:
+    Gui, Submit, nohide
+    gui_destroy()
+    ;Parse a comma separated value (CSV) file:
+    Loop, read, %A_ScriptDir%\Miscellaneous\folders.csv
+    {
+        LineNumber = %A_Index%
+        Loop, parse, A_LoopReadLine, CSV
+        {
+            ; save all column values to Field1, Field2, ...
+            Field%A_Index% := A_LoopField
+        }
+        If (Field1 == List)
+        {
+            folder = %Field2%
+            Loop, %search_urls%
+            {
+                StringReplace, search_final_url, search_url%A_Index%, REPLACEME, %folder%    
+                run %search_final_url%      
+            }
+            search_urls := 0
+            return
+        }
+    }
+    return
+
 gui_search(url) {
     global
     if gui_state != search
@@ -151,6 +187,27 @@ gui_SearchEnter:
     search_urls := 0
     return
 
+gui_projectsearch(url) {
+    global
+    if gui_state != search
+    {
+        gui_state = search
+        ; if gui_state is "main", then we are coming from the main window and
+        ; GUI elements for the search field have not yet been added.
+        Gosub, gui_project_search_add_elements
+
+    }
+
+    ; Assign the url to a variable.
+    ; The variables will have names search_url1, search_url2, ...
+
+    search_urls := search_urls + 1
+    search_url%search_urls% := url
+}
+
+
+
+    
 ;-------------------------------------------------------------------------------
 ; TOOLTIP
 ; The tooltip shows all defined commands, along with a description of what
