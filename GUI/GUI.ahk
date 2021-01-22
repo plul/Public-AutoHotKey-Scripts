@@ -46,6 +46,7 @@ gui_spawn:
     }
 
     gui_state = main
+    search_urls := 0
 
     Gui, Margin, 16, 16
     Gui, Color, 1d1f21, 282a2e
@@ -63,7 +64,6 @@ gui_spawn:
 ; Automatically triggered on Escape key:
 GuiEscape:
     gui_destroy()
-    search_urls := 0
     return
 
 ; The callback function when the text changes in the input field.
