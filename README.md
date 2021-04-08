@@ -20,10 +20,11 @@ When typing something in the GUI, whatever you type is matched up against the co
 * While in Notepad, type `@` into the GUI. It will write your e-mail address (but you need to go into `UserCommands.ahk` later to specify your own address).
 * Try typing `down` into the GUI to open your Downloads folder or `rec` to open the Recycle Bin.
 * You can search google by typing `g` followed by a space. A new input field should appear. Type your search query and press enter. Use `l ` if you are 'Feeling Lucky'.
-* You can search Youtube with `y `, search Facebook with `f ` or the torrent networks with `t `.
+* You can search Youtube with `y `, search Facebook with `fb ` or the torrent networks with `t `.
 * If you like Reddit, you can visit a specific subreddit by typing `/` into the GUI and then the name of the subreddit you have in mind.
 * Try `week` or `date`. (I can never remember the week number so this is useful when on the phone with somebody who insists on comparing calendars going by week number).
 * Type `ping` into the GUI to quickly ping www.google.com to see if your internet connection works.
+* Type `f ` to enter the name of a folder that should be opened (definition in [`folders.csv`](./Miscellaneous/folders.csv)) 
 
 There are some additional example commands included. Try typing simply `?`, and you should see a tooltip with all defined commands and a description of what they do. You may also explore all the sample commands in detail by looking in `UserCommands.ahk`. Now it is time for you to start filling in your own personalized commands.
 

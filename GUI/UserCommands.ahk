@@ -48,7 +48,7 @@ else if Pedersen = x%A_Space% ; Search Google as Incognito
 ;-------------------------------------------------------------------------------
 ;;; SEARCH OTHER THINGS ;;;
 ;-------------------------------------------------------------------------------
-else if Pedersen = f%A_Space% ; Search Facebook
+else if Pedersen = fb%A_Space% ; Search Facebook
 {
     gui_search_title = Search Facebook
     gui_search("https://www.facebook.com/search/results.php?q=REPLACEME")
@@ -134,6 +134,11 @@ else if Pedersen = rel ; Reload this script
     gui_destroy() ; removes the GUI even when the reload fails
     Reload
 }
+else if Pedersen = flist ; show CSV with folders
+{
+    gui_destroy()
+    run, notepad.exe "%A_ScriptDir%\Miscellaneous\folders.csv"
+}
 else if Pedersen = dir ; Open the directory for this script
 {
     gui_destroy()
@@ -203,6 +208,11 @@ else if Pedersen = rec ; Recycle Bin
 {
     gui_destroy()
     Run ::{645FF040-5081-101B-9F08-00AA002F954E}
+}
+else if Pedersen = f%A_Space% ; Open local folder
+{
+    gui_search_title = Find local folder
+    gui_projectsearch("REPLACEME")
 }
 
 
