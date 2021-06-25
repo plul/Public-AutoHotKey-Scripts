@@ -41,9 +41,17 @@ else if Pedersen = x%A_Space% ; Search Google as Incognito
 ;   So what this does is that it runs chrome with the arguments "-incognito" and the google search URL where REPLACEME in the URL has been replaced by your input.
 {
     gui_search_title = Google Search as Incognito
-    gui_search("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe -incognito https://www.google.com/search?safe=off&q=REPLACEME")
+   	gui_search_title = Google Search as Incognito
+	;gui_search("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe -incognito https://www.google.com/search?safe=off&q=REPLACEME") ;; This is the path needed for chrome: if the path is incorrect, you need to replace the path to the chrome.exe file yourself. DO NOT remove/change the -incognito/-inprivate afterwards. JUST the path at the beginning, otherwise it won't open in incognito mode. 
+   	;gui_search("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe -inprivate https://www.google.com/search?safe=off&q=REPLACEME")
+	gui_search("firefox.exe -private-window https://www.google.com/search?safe=off&q=REPLACEME")
+   	;gui_search("C:\Program Files\Internet Explorer\iexplore.exe -InPrivate https://www.google.com/search?safe=off&q=REPLACEME") ;; <--- THIS DOES NOT WORK. I can't trigger icognito mode in iex.
 }
-
+else if Pedersen = maps ; Google Maps focused on the Rhine-Waal University of Applied Sciences
+{
+	gui_search_title = Lost on the way home?
+	gui_search("https://www.google.com/maps/search/REPLACEME/")
+}
 
 ;-------------------------------------------------------------------------------
 ;;; SEARCH OTHER THINGS ;;;
@@ -102,11 +110,6 @@ else if Pedersen = paint ; MS Paint
 {
     gui_destroy()
     run "C:\Windows\system32\mspaint.exe"
-}
-else if Pedersen = maps ; Google Maps focused on the Technical University of Denmark, DTU
-{
-    gui_destroy()
-    run "https://www.google.com/maps/@55.7833964`,12.5244754`,12z"
 }
 else if Pedersen = inbox ; Open google inbox
 {
