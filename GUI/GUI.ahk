@@ -96,10 +96,10 @@ return
 
 
 ForceOnTop_Host:
-;if WinExist("Host")
-	;WinActivate
-;else
-	;SetTimer, ForceOnTop_Host, Off
+if WinExist("Host")
+	WinActivate
+else
+	SetTimer, ForceOnTop_Host, Off
 return
 DeleteWord_Host:
 SendInput, ^+{Left}{BS}
