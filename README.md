@@ -110,3 +110,15 @@ The url is now passed as a parameter instead:
     gui_search("https://www.youtube.com/results?search_query=REPLACEME")
 
 Additionally, the tooltip was revived for Windows 10 and improved with the help of Github user schmimae.
+
+
+--- END of original documentation
+In this branch by Gewerd Strauss, the following changes have been made:
+
+1. The gui is located at the very top of the screen, central, instead of the middle of the screen.
+2. Ctrl+Backspace will delete full words within the gui
+3. The tooltip created when typing "?" in the gui is split into two halves to be displayed separately, as my personal version of this wonderful script is running out of screen height for displaying command tooltips. Can be easily changed by deactivating the two responsible lines and reactivating the original line above. 
+
+
+
+Thank you to the original creator, plul, for creating this amazing utility script. I use it in way too many situations to count.
