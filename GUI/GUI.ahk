@@ -208,5 +208,7 @@ gui_commandlibrary:
         tooltiptextpadded .= "`n"
     }
     Sort, tooltiptextpadded
-    ToolTip %tooltiptextpadded%, 3, 3, 1
+    tooltip,% Substr(tooltiptextpadded,Instr(tooltiptextpadded,"`n",,,Ceil((StrSplit(tooltiptextpadded,"`n").length())/2))),A_ScreenWidth,3,3
+    ToolTip % Substr(tooltiptextpadded,1,Instr(tooltiptextpadded,"`n",,,Ceil((StrSplit(tooltiptextpadded,"`n").length())/2))), 3, 3, 1
+    ; for reasons I don't quite understand myself, if you swap around the two tooltips, the left one disappears shortly after the command is issued for the first time.
     return
