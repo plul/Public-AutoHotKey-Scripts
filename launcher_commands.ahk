@@ -86,18 +86,18 @@ Switch var {
 
 ; Folders
 Switch var {
-    case "hom":
-        open("C:\Users\%A_Username%")
+    case "home":
+        open("C:\Users\" . A_Username)
     case "local":
-        open("C:\Users\%A_Username%\AppData\Local")
+        open("C:\Users\" . A_Username . "\AppData\Local")
     case "roam":
-        open("C:\Users\%A_Username%\AppData\Roaming")
+        open("C:\Users\" . A_Username . "\AppData\Roaming")
     case "star":
-        open("C:\Users\%A_Username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup")
+        open("C:\Users\" . A_Username . "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup")
     case "t1":
         open("C:\Windows\Temp")
     case "t2":
-        open("C:\Users\%A_Username%\AppData\Local\Temp")
+        open("C:\Users\" . A_Username . "\AppData\Local\Temp")
     case "rec":
         ; Recycle Bin
         open("::{645FF040-5081-101B-9F08-00AA002F954E}")
