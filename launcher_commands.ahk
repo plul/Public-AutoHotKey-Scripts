@@ -1,12 +1,6 @@
-#NoEnv
-#SingleInstance force
-#MaxHotkeysPerInterval 9999
-
-
 ; open websites based on the provided search query and title
 openUrl(searchQuery, title) {
     gui_search(searchQuery, title)
-
 }
 
 ; open applications or urls
@@ -15,16 +9,7 @@ open(param) {
     Run %param%
 }
 
-SpecialCommand(command) {
-    gui_destroy()
-    ; Perform actions based on the provided command
-    if (command = "rel") {
-        Reload
-    } else if (command = "name") {
-        Send, your_name lol
-    }
-}
-
+; Search Engines
 Switch var {
     case "g" . A_Space:
         ; Search Google
@@ -116,10 +101,4 @@ Switch var {
     case "rec":
         ; Recycle Bin
         open("::{645FF040-5081-101B-9F08-00AA002F954E}")
-}
-
-; Special Commands
-Switch var {
-    case "rel", "name":
-        SpecialCommand(var)
 }

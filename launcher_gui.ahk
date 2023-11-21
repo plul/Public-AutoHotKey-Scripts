@@ -1,7 +1,3 @@
-#NoEnv
-#SingleInstance force
-#MaxHotkeysPerInterval 9999
-;-------------------------------------------------------------------------------
 ; AUTO EXECUTE
 gui_autoexecute:
     ; Initialize color variables for GUI
@@ -17,9 +13,6 @@ gui_autoexecute:
     search_urls := 0
     return
 
-
-
-;-------------------------------------------------------------------------------
 ; LAUNCH GUI
 ^Space::
 gui_spawn:
@@ -45,9 +38,6 @@ gui_spawn:
     Gui, Show, , myGUI
     return
 
-
-
-;-------------------------------------------------------------------------------
 ; GUI FUNCTIONS AND SUBROUTINES
 GuiEscape:
     gui_destroy()
@@ -76,10 +66,7 @@ gui_destroy() {
     WinActivate
 }
 
-
-
-;-------------------------------------------------------------------------------
-;SEARCH ENGINES
+;SEARCH ENGINE
 uriEncode(str) {
     f = %A_FormatInteger%
     SetFormat, Integer, Hex
@@ -114,7 +101,6 @@ gui_search(url, title) {
     search_urls := search_urls + 1
     search_url%search_urls% := url
 }
-
 
 gui_SearchEnter:
     ; Submit the search and run the specified URL with the query
